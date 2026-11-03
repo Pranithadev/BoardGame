@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -20,9 +21,9 @@ pipeline {
         }
 
         stage('Check Java') {
-    steps {
-        sh 'java -version'
-        sh 'mvn -version'
+            steps {
+                sh 'java -version'
+                sh 'mvn -version'
             }
         }
 
@@ -34,7 +35,7 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     sh '''
-                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                     '''
                 }
             }
@@ -67,15 +68,15 @@ pipeline {
                 )]) {
 
                     sh """
-                    git config user.email "apoorvaramesh11@gmail.com"
-                    git config user.name "apoorvaramesh11"
+                        git config user.email "apoorvaramesh11@gmail.com"
+                        git config user.name "apoorvaramesh11"
 
-                    sed -i "s|image:.*|image: ${FULL_IMAGE}|" manifests/deployment-service.yaml
+                        sed -i "s|image:.*|image: ${FULL_IMAGE}|" manifests/deployment-service.yaml
 
-                    git add manifests/deployment-service.yaml
-                    git commit -m "Update image ${FULL_IMAGE}" || echo "No changes"
+                        git add manifests/deployment-service.yaml
+                        git commit -m "Update image ${FULL_IMAGE}" || echo "No changes"
 
-                    git push https://${GIT_USER}:${GIT_PASS}@github.com/apoorvaramesh11/BoardGame.git HEAD:main
+                        git push https://${GIT_USER}:${GIT_PASS}@github.com/apoorvaramesh11/BoardGame.git HEAD:main
                     """
                 }
             }
@@ -85,8 +86,8 @@ pipeline {
             steps {
                 sh """
                     kubectl apply -f manifests/deployment-service.yaml
-
-           }
+                """
+            }
         }
     }
 }
