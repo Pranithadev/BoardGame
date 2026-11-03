@@ -85,5 +85,8 @@ pipeline {
             steps {
                 sh """
                     kubectl apply -f manifests/deployment-service.yaml
+
+           }
+        }
     }
 }
