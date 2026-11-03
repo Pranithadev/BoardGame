@@ -82,11 +82,16 @@ pipeline {
             }
         }
 
-        stage('Deploy to kubernetes') {
-            steps {
-                sh """
-                    kubectl apply -f manifests/deployment-service.yaml
-                """
+        stage('Deploy to Kubernetes') {
+    steps {
+        withEnv(['KUBECONFIG=/root/.kube/config']) {
+            sh """
+                kubectl --context kind-devops get nodes
+                kubectl apply -f manifests/deployment-service.yaml
+                kubectl rollout status deployment/board-game --timeout=120s
+                kubectl get pods
+            """
+                }
             }
         }
     }
