@@ -84,7 +84,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
     steps {
-        withEnv(['KUBECONFIG=/root/.kube/config']) {
+        withEnv(['KUBECONFIG=/var/lib/jenkins/.kube/config']) {
             sh """
                 kubectl --context kind-devops get nodes
                 kubectl apply -f manifests/deployment-service.yaml
