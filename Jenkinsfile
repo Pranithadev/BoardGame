@@ -86,7 +86,7 @@ pipeline {
     steps {
         withEnv(['KUBECONFIG=/var/lib/jenkins/.kube/config']) {
             sh """
-                kubectl --context kind-devops get nodes
+                kubectl --context kind-kind-devops get nodes
                 kubectl apply -f manifests/deployment-service.yaml
                 kubectl rollout status deployment/boardgame-deployment --timeout=120s
                 kubectl get pods
