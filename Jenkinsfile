@@ -16,7 +16,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/apoorvaramesh11/BoardGame.git', branch: 'main'
+                git url: 'https://github.com/Pranithadev/BoardGame.git', branch: 'main'
             }
         }
 
