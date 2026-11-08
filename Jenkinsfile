@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "pranitha/board-game"
+        IMAGE_NAME = "layamusic/board-game"
         TAG = "${BUILD_NUMBER}"
         FULL_IMAGE = "${IMAGE_NAME}:${TAG}"
     }
