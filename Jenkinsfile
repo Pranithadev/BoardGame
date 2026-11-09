@@ -69,7 +69,7 @@ pipeline {
 
                     sh """
                         git config user.email "pranithames@gmail.com"
-                        git config user.name "pranithadev"
+                        git config user.name "Pranithadev"
 
                         sed -i "s|image:.*|image: ${FULL_IMAGE}|" manifests/deployment-service.yaml
 
