@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: boardgame
-          image: layamusic/board-game:8
+          image: layamusic/board-game:2
           imagePullPolicy: Always
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
